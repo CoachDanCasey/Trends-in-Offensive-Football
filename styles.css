@@ -1,50 +1,22 @@
-/* styles.css */
-.video-container {
-    position: relative;
-    width: 1280px;
-    margin: auto;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
 }
 
-#telestrationLayer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
+.video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .controls {
-    display: flex;
-    justify-content: center;
     margin-top: 10px;
 }
 
-.controls button, .controls input[type="file"] {
-    background-color: #FF0000; /* YouTube red */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    margin: 0 5px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.controls button:hover, .controls input[type="file"]:hover {
-    background-color: #CC0000;
-}
-
-.controls input[type="range"] {
-    width: 150px;
-    margin-left: 20px;
-}
-
-.controls input[type="file"] {
-    display: inline-block;
-    padding: 10px;
-    border-radius: 4px;
-    background: #FF0000;
-    color: #FFF;
-    font-size: 18px;
-    text-align: center;
+button {
+    margin-right: 5px;
 }
