@@ -18,7 +18,7 @@
     margin-top: 10px;
 }
 
-.controls button {
+.controls button, .controls input[type="file"] {
     background-color: #FF0000; /* YouTube red */
     border: none;
     color: white;
@@ -30,11 +30,21 @@
     transition: background-color 0.3s;
 }
 
-.controls button:hover {
+.controls button:hover, .controls input[type="file"]:hover {
     background-color: #CC0000;
 }
 
 .controls input[type="range"] {
     width: 150px;
     margin-left: 20px;
+}
+
+.controls input[type="file"] {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 4px;
+    background: #FF0000;
+    color: #FFF;
+    font-size: 18px;
+    text-align: center;
 }
