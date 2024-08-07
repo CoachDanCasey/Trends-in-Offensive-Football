@@ -20,7 +20,7 @@ body {
     align-items: center;
 }
 
-button, .file-input-label {
+button {
     background-color: #ff0000;
     color: white;
     border: none;
@@ -34,11 +34,11 @@ button, .file-input-label {
     justify-content: center;
 }
 
-button:hover, .file-input-label:hover {
+button:hover {
     background-color: #e60000;
 }
 
-button i, .file-input-label i {
+button i {
     margin-right: 5px;
 }
 
