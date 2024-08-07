@@ -1,8 +1,15 @@
 /* styles.css */
 .video-container {
     position: relative;
-    width: 640px;
+    width: 1280px;
     margin: auto;
+}
+
+#telestrationLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
 }
 
 .controls {
