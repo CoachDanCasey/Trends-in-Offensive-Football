@@ -12,17 +12,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     playPauseButton.addEventListener('click', () => {
         if (player.paused()) {
             player.play();
-            playPauseButton.textContent = 'Pause';
+            playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
         } else {
             player.pause();
-            playPauseButton.textContent = 'Play';
+            playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
         }
     });
 
     stopButton.addEventListener('click', () => {
         player.pause();
         player.currentTime(0);
-        playPauseButton.textContent = 'Play';
+        playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
     });
 
     clearButton.addEventListener('click', () => {
