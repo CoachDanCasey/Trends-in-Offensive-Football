@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const videoSource = document.getElementById('videoSource');
     const playPauseBtn = document.getElementById('playPauseBtn');
     const stopBtn = document.getElementById('stopBtn');
+    const uploadBtn = document.getElementById('uploadBtn');
     const fileInput = document.getElementById('fileInput');
 
     playPauseBtn.addEventListener('click', () => {
@@ -19,6 +20,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         videoPlayer.pause();
         videoPlayer.currentTime = 0;
         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    });
+
+    uploadBtn.addEventListener('click', () => {
+        fileInput.click();
     });
 
     fileInput.addEventListener('change', (event) => {
