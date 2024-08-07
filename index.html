@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Player</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="video-container">
-        <video id="videoPlayer" width="800" controls>
+        <video id="videoPlayer" width="1000" height="562" controls>
             <source src="sample.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="controls">
-            <button id="playPauseBtn">Play</button>
-            <button id="stopBtn">Stop</button>
+            <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+            <button id="stopBtn"><i class="fas fa-stop"></i></button>
+            <label for="fileInput" class="file-input-label"><i class="fas fa-folder-open"></i></label>
             <input type="file" id="fileInput" accept="video/*">
         </div>
     </div>
