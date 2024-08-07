@@ -76,6 +76,57 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 break;
         }
     }
+    // scripts.js
+document.addEventListener('DOMContentLoaded', (event) => {
+    const player = videojs('videoPlayer');
+    const canvas = document.getElementById('telestrationLayer');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+    let telestrationEnabled = false;
+
+    document.getElementById('toggleTelestration').addEventListener('click', () => {
+        telestrationEnabled = !telestrationEnabled;
+        if (telestrationEnabled) {
+            canvas.style.pointerEvents = 'auto'; // Enable drawing
+            console.log("Telestration enabled");
+        } else {
+            canvas.style.pointerEvents = 'none'; // Disable drawing
+            console.log("Telestration disabled");
+        }
+    });
+
+    canvas.addEventListener('mousedown', (e) => {
+        if (telestrationEnabled) {
+            drawing = true;
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+            console.log("Start drawing");
+        }
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (telestrationEnabled && drawing) {
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+            console.log("Drawing");
+        }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        if (telestrationEnabled) {
+            drawing = false;
+            console.log("Stop drawing");
+        }
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+        if (telestrationEnabled && drawing) {
+            drawing = false;
+            console.log("Drawing stopped (mouse left)");
+        }
+    });
+});
+
 
     function changeVolume(change) {
         let newVolume = Math.max(0, Math.min(1, player.volume() + change));
