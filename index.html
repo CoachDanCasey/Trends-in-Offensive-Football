@@ -3,28 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Annotated Video Player</title>
+    <title>Telestrated Video Player</title>
     <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        .video-container {
+            position: relative;
+            width: 1280px; /* Set to the width of your video */
+            height: 720px; /* Set to the height of your video */
+            margin: auto;
+        }
+
+        #videoPlayer {
+            width: 100%;
+            height: 100%;
+        }
+
+        #telestrationLayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Default to not receiving events */
+        }
+    </style>
 </head>
 <body>
     <div class="video-container">
-        <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="1280" height="720">
-            <source id="videoSource" src="your-video-file.mp4" type="video/mp4">
+        <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto">
+            <source src="your-video-file.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <canvas id="telestrationLayer" width="1280" height="720"></canvas>
-        <div class="controls">
-            <button id="playPause"><i class="fas fa-play"></i></button>
-            <button id="stop"><i class="fas fa-stop"></i></button>
-            <button id="clear"><i class="fas fa-eraser"></i></button>
-            <button id="toggleTelestration"><i class="fas fa-pen"></i></button>
-            <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-            <input type="file" id="upload" accept="video/mp4">
-        </div>
+        <canvas id="telestrationLayer"></canvas>
     </div>
     <script src="https://vjs.zencdn.net/7.10.2/video.js"></script>
-    <script src="scripts.js"></script>
+    <script>
+        // JavaScript setup will go here
+    </script>
 </body>
 </html>
