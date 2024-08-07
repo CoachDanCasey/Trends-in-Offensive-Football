@@ -22,9 +22,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     fileInput.addEventListener('change', (event) => {
         const file = event.target.files[0];
-        const fileURL = URL.createObjectURL(file);
-        videoPlayer.src = fileURL;
-        videoPlayer.load();
-        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+            console.log("File selected: ", file.name);
+            console.log("File URL: ", fileURL);
+            videoPlayer.src = fileURL;
+            videoPlayer.load();
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        } else {
+            console.log("No file selected");
+        }
     });
 });
