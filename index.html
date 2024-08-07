@@ -29,3 +29,58 @@ video.addEventListener('pause', function() {
 video.addEventListener('seeked', function() {
   // Seek through the video
 });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.2.1/fabric.min.js"></script>
+const canvas = document.getElementById('canvas');
+const fabricCanvas = new fabric.Canvas(canvas);
+
+// Add drawing functionality
+fabricCanvas.on('mouse:down', function(o) {
+  const pointer = fabricCanvas.getPointer(o.e);
+  const circle = new fabric.Circle({
+    left: pointer.x,
+    top: pointer.y,
+    radius: 5,
+    fill: 'red'
+  });
+  fabricCanvas.add(circle);
+});
+
+fabricCanvas.on('mouse:move', function(o) {
+  if (fabricCanvas.isDrawingMode) {
+    const pointer = fabricCanvas.getPointer(o.e);
+    const circle = new fabric.Circle({
+      left: pointer.x,
+      top: pointer.y,
+      radius: 5,
+      fill: 'red'
+    });
+    fabricCanvas.add(circle);
+  }
+});
+fabricCanvas.on('text:changed', function(o) {
+  const text = o.target;
+  const textObj = new fabric.Textbox(text.text, {
+    left: text.left,
+    top: text.top,
+    fontSize: 24,
+    fontWeight: 'bold',
+    fill: 'black'
+  });
+  fabricCanvas.add(textObj);
+});
+document.addEventListener('keydown', function(e) {
+  if (e.code === 'Space') {
+    // Toggle play/pause
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  } else if (e.code === 'ArrowRight') {
+    // Seek forward
+    video.currentTime += 5;
+  } else if (e.code === 'ArrowLeft') {
+    // Seek backward
+    video.currentTime -= 5;
+  }
+});
