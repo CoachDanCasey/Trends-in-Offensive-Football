@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const videoPlayer = document.getElementById('videoPlayer');
+    const videoSource = document.getElementById('videoSource');
     const playPauseBtn = document.getElementById('playPauseBtn');
     const stopBtn = document.getElementById('stopBtn');
     const fileInput = document.getElementById('fileInput');
@@ -22,15 +23,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     fileInput.addEventListener('change', (event) => {
         const file = event.target.files[0];
-        if (file) {
+        if (file && file.type === 'video/mp4') {
             const fileURL = URL.createObjectURL(file);
             console.log("File selected: ", file.name);
             console.log("File URL: ", fileURL);
-            videoPlayer.src = fileURL;
+            videoSource.src = fileURL;
             videoPlayer.load();
             playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
         } else {
-            console.log("No file selected");
+            console.log("No valid file selected");
         }
     });
 });
