@@ -23,15 +23,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     fileInput.addEventListener('change', (event) => {
         const file = event.target.files[0];
-        if (file && file.type === 'video/mp4') {
-            const fileURL = URL.createObjectURL(file);
-            console.log("File selected: ", file.name);
-            console.log("File URL: ", fileURL);
-            videoSource.src = fileURL;
-            videoPlayer.load();
-            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        if (file) {
+            if (file.type === 'video/mp4') {
+                const fileURL = URL.createObjectURL(file);
+                console.log("File selected: ", file.name);
+                console.log("File URL: ", fileURL);
+                videoSource.src = fileURL;
+                videoPlayer.load();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                console.log("Invalid file type: ", file.type);
+                alert("Please select a valid MP4 video file.");
+            }
         } else {
-            console.log("No valid file selected");
+            console.log("No file selected");
         }
+    });
+
+    videoPlayer.addEventListener('error', (e) => {
+        console.error('Video Player Error: ', e);
+        alert("An error occurred while trying to play the video.");
     });
 });
