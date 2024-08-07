@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const stopButton = document.getElementById('stop');
     const clearButton = document.getElementById('clear');
     const volumeControl = document.getElementById('volume');
+    const uploadInput = document.getElementById('upload');
     const canvas = document.getElementById('telestrationLayer');
     const ctx = canvas.getContext('2d');
     let drawing = false;
@@ -33,6 +34,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         player.volume(volumeControl.value);
     });
 
+    uploadInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+            player.src({ type: 'video/mp4', src: fileURL });
+            player.load();
+            playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+        }
+    });
+
     canvas.addEventListener('mousedown', (e) => {
         drawing = true;
         ctx.beginPath();
@@ -54,3 +65,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
         drawing = false;
     });
 });
+
