@@ -14,6 +14,27 @@
 
 .controls {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 10px;
+}
+
+.controls button {
+    background-color: #FF0000; /* YouTube red */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.controls button:hover {
+    background-color: #CC0000;
+}
+
+.controls input[type="range"] {
+    width: 150px;
+    margin-left: 20px;
 }
