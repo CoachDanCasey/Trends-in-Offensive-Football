@@ -7,17 +7,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     playPauseBtn.addEventListener('click', () => {
         if (videoPlayer.paused) {
             videoPlayer.play();
-            playPauseBtn.textContent = 'Pause';
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
         } else {
             videoPlayer.pause();
-            playPauseBtn.textContent = 'Play';
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
         }
     });
 
     stopBtn.addEventListener('click', () => {
         videoPlayer.pause();
         videoPlayer.currentTime = 0;
-        playPauseBtn.textContent = 'Play';
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
     });
 
     fileInput.addEventListener('change', (event) => {
@@ -25,6 +25,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const fileURL = URL.createObjectURL(file);
         videoPlayer.src = fileURL;
         videoPlayer.load();
-        playPauseBtn.textContent = 'Play';
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
     });
 });
