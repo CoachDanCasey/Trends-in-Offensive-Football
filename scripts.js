@@ -12,7 +12,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let drawing = false;
     let telestrationEnabled = false;
 
-    playPauseButton.addEventListener('click', () => {
+    // Event listeners for player controls
+    playPauseButton.addEventListener('click', togglePlayPause);
+    stopButton.addEventListener('click', stopVideo);
+    clearButton.addEventListener('click', () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+    volumeControl.addEventListener('input', () => player.volume(volumeControl.value));
+    toggleTelestrationButton.addEventListener('click', toggleTelestration);
+    uploadInput.addEventListener('change', uploadVideo);
+
+    // Keyboard event listener
+    document.addEventListener('keydown', handleKeyPress);
+
+    function togglePlayPause() {
         if (player.paused()) {
             player.play();
             playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
@@ -20,32 +31,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
             player.pause();
             playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
         }
-    });
+    }
 
-    stopButton.addEventListener('click', () => {
+    function stopVideo() {
         player.pause();
         player.currentTime(0);
         playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
-    });
+    }
 
-    clearButton.addEventListener('click', () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    });
-
-    volumeControl.addEventListener('input', () => {
-        player.volume(volumeControl.value);
-    });
-
-    toggleTelestrationButton.addEventListener('click', () => {
+    function toggleTelestration() {
         telestrationEnabled = !telestrationEnabled;
-        if (telestrationEnabled) {
-            toggleTelestrationButton.classList.add('active');
-        } else {
-            toggleTelestrationButton.classList.remove('active');
-        }
-    });
+        toggleTelestrationButton.classList.toggle('active');
+    }
 
-    uploadInput.addEventListener('change', (event) => {
+    function uploadVideo(event) {
         const file = event.target.files[0];
         if (file) {
             const fileURL = URL.createObjectURL(file);
@@ -53,28 +52,42 @@ document.addEventListener('DOMContentLoaded', (event) => {
             player.load();
             playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
         }
-    });
+    }
 
-    canvas.addEventListener('mousedown', (e) => {
-        if (telestrationEnabled) {
-            drawing = true;
-            ctx.beginPath();
-            ctx.moveTo(e.offsetX, e.offsetY);
+    function handleKeyPress(event) {
+        switch(event.key) {
+            case ' ':
+                togglePlayPause();
+                break;
+            case 's':
+                stopVideo();
+                break;
+            case 'ArrowUp':
+                changeVolume(0.1);
+                break;
+            case 'ArrowDown':
+                changeVolume(-0.1);
+                break;
+            case 'ArrowLeft':
+                rewind(10); // Rewind 10 seconds
+                break;
+            case 'ArrowRight':
+                fastForward(10); // Fast forward 10 seconds
+                break;
         }
-    });
+    }
 
-    canvas.addEventListener('mousemove', (e) => {
-        if (telestrationEnabled && drawing) {
-            ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.stroke();
-        }
-    });
+    function changeVolume(change) {
+        let newVolume = Math.max(0, Math.min(1, player.volume() + change));
+        player.volume(newVolume);
+        volumeControl.value = newVolume;
+    }
 
-    canvas.addEventListener('mouseup', () => {
-        drawing = false;
-    });
+    function rewind(seconds) {
+        player.currentTime(Math.max(0, player.currentTime() - seconds));
+    }
 
-    canvas.addEventListener('mouseleave', () => {
-        drawing = false;
-    });
+    function fastForward(seconds) {
+        player.currentTime(Math.min(player.duration(), player.currentTime() + seconds));
+    }
 });
